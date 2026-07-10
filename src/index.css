@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+
+  /* Paleta de marca: tipografía en negro, neutros claros de soporte */
+  --color-ink: #1A1D14;
+  --color-mist: #EAF0F0;
+  --color-mist-subtle: #F7FAFA;
+  --color-line: #C2CFCE;
+}
+
+@layer base {
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none;
+}
+
