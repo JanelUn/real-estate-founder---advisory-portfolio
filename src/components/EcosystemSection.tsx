@@ -28,7 +28,7 @@ export const EcosystemSection: React.FC = () => {
   };
 
   return (
-    <section id="ecosistema" className="py-24 sm:py-32 bg-white text-ink border-b border-line/60 overflow-hidden">
+    <section id="ecosistema" className="py-24 sm:py-32 bg-white text-ink overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">

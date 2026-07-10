@@ -14,7 +14,7 @@ const MARQUEE_LOGOS = [...LOGOS, ...LOGOS];
 
 export const TrajectorySection: React.FC = () => {
   return (
-    <section id="trayectoria" className="py-24 sm:py-32 bg-white text-ink border-b border-line/60">
+    <section id="trayectoria" className="py-24 sm:py-32 bg-white text-ink">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <Reveal as="h2" className="font-serif text-3xl sm:text-5xl font-light tracking-tight text-ink leading-[1.1]">
           No teorizo. Construyo.
@@ -30,7 +30,7 @@ export const TrajectorySection: React.FC = () => {
       </Reveal>
 
       {/* Franja horizontal full-bleed con marquee infinito */}
-      <Reveal as="div" delay={0.2} className="mt-8 py-6 border-y border-line/60 bg-mist/10 w-full overflow-hidden">
+      <Reveal as="div" delay={0.2} className="mt-8 py-6 bg-mist/10 w-full overflow-hidden">
         <span className="sr-only">Respaldada por: {LOGOS.map((l) => l.name).join(', ')}</span>
         <div className="flex items-center gap-x-16 sm:gap-x-24 w-max animate-marquee" aria-hidden="true">
           {MARQUEE_LOGOS.map((logo, idx) => (

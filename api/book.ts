@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { randomUUID } from 'crypto';
-import { getCalendarClient, CALENDAR_ID, BUSY_CALENDAR_IDS } from './_lib/googleCalendar';
-import { TIMEZONE, MIN_NOTICE_HOURS, isSlotFree, type BusyInterval } from './_lib/schedule';
-import { SERVICE_CATALOG } from '../shared/services';
+import { getCalendarClient, CALENDAR_ID, BUSY_CALENDAR_IDS } from './_lib/googleCalendar.js';
+import { TIMEZONE, MIN_NOTICE_HOURS, isSlotFree, type BusyInterval } from './_lib/schedule.js';
+import { SERVICE_CATALOG } from '../shared/services.js';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

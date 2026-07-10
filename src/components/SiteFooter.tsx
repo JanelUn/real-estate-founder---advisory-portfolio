@@ -19,7 +19,7 @@ const SOCIAL_LINKS = [
 
 export const SiteFooter: React.FC = () => {
   return (
-    <Reveal as="footer" y={12} className="py-12 bg-white border-t border-line/60">
+    <Reveal as="footer" y={12} className="py-12 bg-white">
       <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ink/70 font-medium">
           {SITE_LINKS.map((link) => (

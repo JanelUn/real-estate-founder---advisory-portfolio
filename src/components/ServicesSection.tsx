@@ -93,10 +93,10 @@ export const ServicesSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="servicios"
-      className="relative bg-white text-ink border-b border-line/60"
+      className="relative bg-white text-ink"
       style={{ height: `${SERVICES.length * 70}vh` }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-16">
+      <div className="sticky top-0 h-screen overflow-y-auto flex flex-col justify-center-safe pt-24 pb-6 sm:pt-28 sm:pb-10">
         <div className="max-w-4xl mx-auto px-6 w-full shrink-0">
           <Reveal as="h2" className="font-serif text-3xl sm:text-5xl font-light tracking-tight text-ink leading-[1.1]">
             Qué construyo para ti
@@ -106,7 +106,7 @@ export const ServicesSection: React.FC = () => {
           </Reveal>
         </div>
 
-        <div className="mt-10 sm:mt-14 overflow-hidden shrink-0">
+        <div className="mt-6 sm:mt-8 overflow-hidden shrink-0">
           <motion.div ref={trackRef} style={{ x }} className="flex gap-5 sm:gap-6 px-6 sm:px-[10vw] w-max">
             {SERVICES.map((service, idx) => {
               const { Mockup } = service;
@@ -114,7 +114,7 @@ export const ServicesSection: React.FC = () => {
               return (
                 <div
                   key={service.slug}
-                  className="relative shrink-0 w-[80vw] sm:w-[420px] md:w-[500px] lg:w-[580px] h-[340px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden bg-ink transition-all duration-300"
+                  className="relative shrink-0 w-[80vw] sm:w-[420px] md:w-[500px] lg:w-[580px] h-[clamp(180px,36vh,420px)] sm:h-[clamp(200px,38vh,420px)] md:h-[clamp(220px,40vh,420px)] rounded-2xl overflow-hidden bg-ink transition-all duration-300"
                   style={{ opacity: isActive ? 1 : 0.45, transform: isActive ? 'scale(1)' : 'scale(0.93)' }}
                 >
                   <Mockup />
@@ -124,7 +124,7 @@ export const ServicesSection: React.FC = () => {
           </motion.div>
         </div>
 
-        <div className="max-w-2xl mx-auto px-6 mt-8 sm:mt-10 text-center min-h-[120px] sm:min-h-[110px] shrink-0">
+        <div className="max-w-2xl mx-auto px-6 mt-4 sm:mt-6 text-center min-h-[90px] sm:min-h-[100px] shrink-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.slug}
@@ -142,7 +142,7 @@ export const ServicesSection: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-center gap-[3px] sm:gap-1 mt-6 sm:mt-8 h-8 px-6 shrink-0">
+        <div className="flex items-center justify-center gap-[3px] sm:gap-1 mt-4 sm:mt-6 h-6 sm:h-8 px-6 shrink-0">
           {WAVE_HEIGHTS.map((h, i) => {
             const segment = Math.floor(i / BARS_PER_SEGMENT);
             const isActiveSegment = segment === activeIndex;

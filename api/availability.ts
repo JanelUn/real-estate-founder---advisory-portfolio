@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getCalendarClient, BUSY_CALENDAR_IDS } from './_lib/googleCalendar';
+import { getCalendarClient, BUSY_CALENDAR_IDS } from './_lib/googleCalendar.js';
 import {
   TIMEZONE,
   MIN_NOTICE_HOURS,
@@ -10,7 +10,7 @@ import {
   todayISODate,
   isSlotFree,
   type BusyInterval,
-} from './_lib/schedule';
+} from './_lib/schedule.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {

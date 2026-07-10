@@ -44,7 +44,7 @@ const ProjectImage: React.FC<{ slug: string; icon: typeof Browsers }> = ({ slug,
 
 export const ProjectsSection: React.FC = () => {
   return (
-    <section id="Startups" className="py-24 sm:py-32 bg-white text-ink border-b border-line/60">
+    <section id="Startups" className="py-24 sm:py-32 bg-white text-ink">
       <div className="max-w-5xl mx-auto px-6">
 
         <Reveal as="p" className="text-center text-2xl sm:text-3xl font-light text-ink/80 max-w-2xl mx-auto mb-16 sm:mb-20 leading-snug">

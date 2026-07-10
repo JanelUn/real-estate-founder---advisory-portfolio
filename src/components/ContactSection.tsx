@@ -4,7 +4,7 @@ import { BookingWidget } from './BookingWidget';
 
 export const ContactSection: React.FC = () => {
   return (
-    <section id="contacto" className="relative py-24 sm:py-32 text-white border-b border-line/60 overflow-hidden">
+    <section id="contacto" className="relative py-24 sm:py-32 text-white overflow-hidden">
 
       {/* Foto de fondo con overlay oscuro: bookend visual con el Hero */}
       <div className="absolute inset-0 z-0">
