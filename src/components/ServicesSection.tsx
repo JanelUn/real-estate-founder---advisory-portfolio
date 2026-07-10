@@ -12,7 +12,7 @@ const SERVICES = [
     number: '01',
     slug: 'agentes-ia',
     title: 'Agentes de IA personalizados',
-    description: 'Asistentes que atienden, califican y responden leads de propiedades por WhatsApp o web, entrenados con tu inventario y precios, 24/7.',
+    description: 'Asistentes que atienden, califican y responden leads de propiedades por WhatsApp o web, entrenados con tu inventario y precios, 24/7. Concentrate en atender solo a los calificados',
     Mockup: WhatsAppMockup,
   },
   {
@@ -40,7 +40,7 @@ const SERVICES = [
     number: '05',
     slug: 'producto-digital',
     title: 'Producto digital completo',
-    description: 'De idea a plataforma funcionando, como hice con Dommies.',
+    description: 'De idea a MVP funcionando, como hice con mis Startups.',
     Mockup: ProductMockup,
   },
 ];
@@ -102,7 +102,7 @@ export const ServicesSection: React.FC = () => {
             Qué construyo para ti
           </Reveal>
           <Reveal as="p" delay={0.1} className="mt-4 text-base sm:text-lg text-ink/70 font-light">
-            Si tu inmobiliaria, promotora o fondo tiene un problema que se resuelve con tecnología, lo construyo.
+            Si tu inmobiliaria, agencia o administración tiene un problema que se resuelve con tecnología, lo construyo.
           </Reveal>
         </div>
 

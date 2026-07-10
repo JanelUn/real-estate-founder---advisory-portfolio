@@ -172,7 +172,7 @@ export const BookingWidget: React.FC = () => {
       <div className="p-6 sm:p-8 border-b border-line/60">
         <label className="block text-xs font-semibold text-ink mb-2 flex items-center gap-1.5">
           <CalendarCheck weight="bold" className="text-ink/60" />
-          <span>¿Qué servicio te interesa?</span>
+          <span>¿Cómo te ayudo?</span>
         </label>
         <div className="relative">
           <select

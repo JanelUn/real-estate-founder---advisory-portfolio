@@ -79,7 +79,7 @@ export const HeroSection: React.FC = () => {
           delay={0.2}
           className="mt-6 text-sm sm:text-base text-white/80 font-light leading-relaxed max-w-xl [text-shadow:0_1px_16px_rgba(0,0,0,0.3)]"
         >
-          Founder de Dommies · Ingeniera de Sistemas · Ganadora ProInnovate G12
+          Startup founder· Ingeniera de Sistemas · Ganadora Startup Perû 12G
         </Reveal>
 
         <Reveal trigger="mount" delay={0.3} className="mt-8 w-full max-w-xl">

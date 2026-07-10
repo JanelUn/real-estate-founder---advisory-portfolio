@@ -36,7 +36,7 @@ export const EcosystemSection: React.FC = () => {
               En el camino
             </Reveal>
             <Reveal as="p" delay={0.1} className="mt-4 text-base sm:text-lg text-ink/70 font-light leading-relaxed">
-              Construir Dommies me ha llevado a compartir con founders, inversionistas y referentes del ecosistema emprendedor peruano.
+              Ser startup founder me ha llevado a compartir con founders, inversionistas y referentes del ecosistema emprendedor y real state peruano, y armar una red poderosa de networking en menos de 1 año.
             </Reveal>
           </div>
 

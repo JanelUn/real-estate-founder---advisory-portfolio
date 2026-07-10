@@ -21,12 +21,12 @@ export const TrajectorySection: React.FC = () => {
         </Reveal>
 
         <Reveal as="p" delay={0.1} className="mt-6 text-base sm:text-lg text-ink/70 font-light leading-relaxed max-w-2xl mx-auto">
-          Fundé Dommies, la plataforma de roommate matching con inteligencia artificial respaldada por ProInnovate (Ministerio de Producción) e incubada en UPC. Hoy: más de 10,000 usuarios registrados y clientes que pagan.
+          Fundé la primer startup de roommate matching con inteligencia artificial respaldada por ProInnovate (Ministerio de Producción) e incubada en UPC. Hoy: más de 10,000 usuarios registrados y clientes que pagan.
         </Reveal>
       </div>
 
       <Reveal as="p" delay={0.15} className="mt-16 text-center text-xs font-mono uppercase tracking-[0.25em] text-ink/40">
-        Respaldada por
+        Marcas y organizaciones que han confiado en mi trabajo
       </Reveal>
 
       {/* Franja horizontal full-bleed con marquee infinito */}

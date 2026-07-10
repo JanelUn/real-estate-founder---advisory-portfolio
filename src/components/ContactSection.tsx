@@ -20,7 +20,7 @@ export const ContactSection: React.FC = () => {
               Trabajo con pocos proyectos a la vez.
             </h2>
             <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed">
-              La mayoría de mis clientes llegan por referidos. Trabajo con inmobiliarias, promotoras y fondos que ya están operando y quieren escalar con tecnología. Elige el servicio que te interesa y agenda 30 minutos directo en mi calendario.
+              La mayoría de mis clientes llegan por referidos. Trabajo con inmobiliarias, , agentes top y fondos que ya están operando y quieren escalar con tecnología. Elige el servicio que te interesa y agenda 30 minutos directo en mi calendario.
             </p>
           </Reveal>
 
