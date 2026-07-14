@@ -1,5 +1,6 @@
 import React from 'react';
 import { Reveal } from './Reveal';
+import { trackEvent } from '../lib/analytics';
 
 const NAV_LINKS = [
   { href: '#trayectoria', label: 'Trayectoria' },
@@ -35,6 +36,7 @@ export const Navbar: React.FC = () => {
 
         <a
           href="#contacto"
+          onClick={() => trackEvent('cta_click', { cta_location: 'navbar' })}
           className="relative shrink-0 inline-flex items-center px-5 py-2 rounded-full bg-ink hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-all duration-200 active:scale-95"
         >
           Hablemos

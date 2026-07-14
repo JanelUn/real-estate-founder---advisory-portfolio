@@ -1,24 +1,25 @@
 import React, { useRef } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRightIcon } from '@phosphor-icons/react';
 import { Reveal, StaggerReveal, RevealItem } from './Reveal';
+import { trackEvent } from '../lib/analytics';
 
-type Moment = { src: string; caption: string; link?: string; focus?: 'top' };
+type Moment = { src: string; caption: string; link?: string; partner?: string; focus?: 'top' };
 
 const MOMENTS: Moment[] = [
-  { src: '/ecosystem/ai-salon-lima.jpg', caption: 'Panelistas en AI Salon Lima', link: 'https://www.aisalon.ai/' },
-  { src: '/ecosystem/ceo-chazki.jpg', caption: 'Con Gonzalo Begazo, CEO de Chazki', link: 'https://www.chazki.com/' },
-  { src: '/ecosystem/demo-day-upc.jpg', caption: 'Ganadora de Mejor Elevator Pitch — 2024-2 (UPC)', link: 'https://www.upc.edu.pe/' },
+  { src: '/ecosystem/ai-salon-lima.jpg', caption: 'Panelistas en AI Salon Lima', link: 'https://www.aisalon.ai/', partner: 'AI Salon' },
+  { src: '/ecosystem/ceo-chazki.jpg', caption: 'Con Gonzalo Begazo, CEO de Chazki', link: 'https://www.chazki.com/', partner: 'Chazki' },
+  { src: '/ecosystem/demo-day-upc.jpg', caption: 'Ganadora de Mejor Elevator Pitch — 2024-2 (UPC)', link: 'https://www.upc.edu.pe/', partner: 'UPC' },
   { src: '/ecosystem/encuentra-tu-roommate-2025.jpg', caption: 'Encuentra tu Roommate — 2025' },
   { src: '/ecosystem/encuentra-tu-roommate-2026.jpg', caption: 'Encuentra tu Roommate — 2026' },
-  { src: '/ecosystem/find-your-founder-cientifica.jpg', caption: 'Find Your Founder — Universidad Científica del Sur', link: 'https://www.cientifica.edu.pe/' },
-  { src: '/ecosystem/founders-fitia.jpg', caption: 'Con founders de Fitia — Startup de YCombinator', link: 'https://fitia.app/' },
+  { src: '/ecosystem/find-your-founder-cientifica.jpg', caption: 'Find Your Founder — Universidad Científica del Sur', link: 'https://www.cientifica.edu.pe/', partner: 'UCSUR' },
+  { src: '/ecosystem/founders-fitia.jpg', caption: 'Con founders de Fitia — Startup de YCombinator', link: 'https://fitia.app/', partner: 'Fitia' },
   { src: '/ecosystem/huanuco-tech-week-2025-panel.jpg', caption: 'Panel — Huánuco Tech Week 2025' },
   { src: '/ecosystem/huanuco-tech-week-2025-grupo.jpg', caption: 'Huánuco Tech Week 2025' },
   { src: '/ecosystem/equipo-dommies.jpg', caption: 'Panelista Mujeres Emprendedoras' },
   { src: '/ecosystem/miguel-montalvan.jpg', caption: 'Con Miguel Montalván — Mentor y Conferencista', focus: 'top' },
-  { src: '/ecosystem/ruben-sanchez-pyme.jpg', caption: 'Cumbre Pyme APEC — con Rubén Sánchez, CEO de San Antonio', link: 'https://pasteleriasanantonio.com/', focus: 'top' },
+  { src: '/ecosystem/ruben-sanchez-pyme.jpg', caption: 'Cumbre Pyme APEC — con Rubén Sánchez, CEO de San Antonio', link: 'https://pasteleriasanantonio.com/', partner: 'San Antonio', focus: 'top' },
   { src: '/ecosystem/photo-2.jpg', caption: 'Orientación con el Tio Rockefeller - Augusto Peñaloza' },
-  { src: '/ecosystem/clase-upc.jpg', caption: 'Dictado de clase de "Lanzamiento de producto y negocios sostenibles" en UPC', link: 'https://www.upc.edu.pe/' },
+  { src: '/ecosystem/clase-upc.jpg', caption: 'Dictado de clase de "Lanzamiento de producto y negocios sostenibles" en UPC', link: 'https://www.upc.edu.pe/', partner: 'UPC' },
   { src: '/ecosystem/pecap-2025.jpg', caption: 'Perú Venture Capital Conference — 2025' },
   { src: '/ecosystem/zero-to-one.jpg', caption: 'Zero to One — De la idea al crecimiento' },
 ];
@@ -90,6 +91,7 @@ export const EcosystemSection: React.FC = () => {
                 href={moment.link}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackEvent('partner_click', { partner: moment.partner ?? moment.link, location: 'ecosistema' })}
                 className="mt-3 inline-flex items-center gap-1 text-xs sm:text-sm text-ink/60 font-mono hover:text-ink transition-colors"
               >
                 {moment.caption}

@@ -11,6 +11,7 @@ import {
 import { motion } from 'motion/react';
 import { Reveal } from './Reveal';
 import { SERVICE_CATALOG } from '../../shared/services';
+import { trackEvent } from '../lib/analytics';
 
 interface Slot {
   start: string;
@@ -107,6 +108,12 @@ export const BookingWidget: React.FC = () => {
     setShowAllSlots(false);
     setBookingResult(null);
     setBookingError(null);
+    trackEvent('service_select', { service: value });
+  };
+
+  const handleSlotSelect = (slot: Slot) => {
+    setSelectedSlot(slot);
+    trackEvent('slot_select', { service: selectedService });
   };
 
   const goToWeek = (direction: -1 | 1) => {
@@ -139,6 +146,7 @@ export const BookingWidget: React.FC = () => {
       const data = await response.json();
       if (!response.ok) {
         setBookingError(data.error ?? 'No pudimos crear la reserva.');
+        trackEvent('booking_error', { service: selectedService, reason: response.status === 409 ? 'slot_taken' : 'api_error' });
         if (response.status === 409) {
           setSelectedSlot(null);
           fetchWeek(availability?.weekStart);
@@ -146,8 +154,10 @@ export const BookingWidget: React.FC = () => {
         return;
       }
       setBookingResult({ meetLink: data.meetLink, eventLink: data.eventLink });
+      trackEvent('schedule_call', { service: selectedService });
     } catch {
       setBookingError('No pudimos crear la reserva. Revisa tu conexión e intenta de nuevo.');
+      trackEvent('booking_error', { service: selectedService, reason: 'network_error' });
     } finally {
       setIsBooking(false);
     }
@@ -374,7 +384,7 @@ export const BookingWidget: React.FC = () => {
                             <button
                               key={slot.start}
                               type="button"
-                              onClick={() => setSelectedSlot(slot)}
+                              onClick={() => handleSlotSelect(slot)}
                               className="w-full py-1.5 sm:py-2 rounded-lg border border-line text-[10px] sm:text-xs font-medium text-ink hover:border-ink hover:bg-mist-subtle transition-colors"
                             >
                               {formatSlotTime(slot.start)}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TiktokLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icons/react';
 import { Reveal } from './Reveal';
+import { trackEvent } from '../lib/analytics';
 
 const SITE_LINKS = [
   { href: '#inicio', label: 'Inicio' },
@@ -39,6 +40,7 @@ export const SiteFooter: React.FC = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={social.label}
+                onClick={() => trackEvent('social_click', { network: social.label.toLowerCase(), location: 'footer' })}
                 className="text-ink/60 hover:text-ink transition-colors"
               >
                 <Icon weight="fill" className="w-4 h-4" />

@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUp, TiktokLogo, LinkedinLogo, InstagramLogo } from '@p
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Reveal } from './Reveal';
 import { Magnetic } from './Magnetic';
+import { trackEvent } from '../lib/analytics';
 
 const SOCIAL_LINKS = [
   { href: 'https://www.instagram.com/yanel.un/', label: 'Instagram', icon: InstagramLogo },
@@ -98,6 +99,7 @@ export const HeroSection: React.FC = () => {
               <a
                 href="#contacto"
                 aria-label="Hablemos de tu negocio"
+                onClick={() => trackEvent('cta_click', { cta_location: 'hero_search' })}
                 className="w-10 h-10 rounded-full bg-white text-ink flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-transform duration-200"
               >
                 <ArrowUp weight="bold" className="w-4 h-4" />
@@ -110,6 +112,7 @@ export const HeroSection: React.FC = () => {
           <Magnetic className="inline-block">
             <a
               href="#contacto"
+              onClick={() => trackEvent('cta_click', { cta_location: 'hero_button' })}
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-ink text-white font-semibold text-sm sm:text-base shadow-md hover:bg-black active:scale-95 transition-colors duration-200"
             >
               <span>Hablemos de tu negocio</span>
@@ -132,6 +135,7 @@ export const HeroSection: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
+                  onClick={() => trackEvent('social_click', { network: social.label.toLowerCase(), location: 'hero' })}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   <Icon weight="fill" className="w-5 h-5" />

@@ -6,6 +6,7 @@ import { AutomationMockup } from './service-mockups/AutomationMockup';
 import { CodeSnippetMockup } from './service-mockups/CodeSnippetMockup';
 import { GoogleSerpMockup } from './service-mockups/GoogleSerpMockup';
 import { ProductMockup } from './service-mockups/ProductMockup';
+import { trackEvent } from '../lib/analytics';
 
 const SERVICES = [
   {
@@ -85,6 +86,7 @@ export const ServicesSection: React.FC = () => {
     const scrollableHeight = section.offsetHeight - window.innerHeight;
     const targetY = window.scrollY + rect.top + progress * scrollableHeight;
     window.scrollTo({ top: targetY, behavior: 'smooth' });
+    trackEvent('service_nav_click', { service: SERVICES[idx].slug });
   };
 
   const active = SERVICES[activeIndex];
