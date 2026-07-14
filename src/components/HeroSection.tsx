@@ -1,8 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUp } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUp, TiktokLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icons/react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Reveal } from './Reveal';
 import { Magnetic } from './Magnetic';
+
+const SOCIAL_LINKS = [
+  { href: 'https://www.instagram.com/yanel.un/', label: 'Instagram', icon: InstagramLogo },
+  { href: 'https://www.linkedin.com/in/yanel-ulpiano-n/', label: 'LinkedIn', icon: LinkedinLogo },
+  { href: 'https://www.tiktok.com/@yanel.un', label: 'TikTok', icon: TiktokLogo },
+];
 
 const EXAMPLE_QUERIES = [
   '¿Cómo automatizo el seguimiento de mis leads inmobiliarios?',
@@ -110,6 +116,29 @@ export const HeroSection: React.FC = () => {
               <ArrowRight weight="bold" className="w-4 h-4" />
             </a>
           </Magnetic>
+        </Reveal>
+
+        <Reveal trigger="mount" delay={0.5} className="mt-6 flex flex-col items-center gap-3">
+          <span className="text-xs sm:text-sm text-white/70 font-mono tracking-wide [text-shadow:0_1px_16px_rgba(0,0,0,0.3)]">
+            Yanel Ulpiano Nieto
+          </span>
+          <div className="flex items-center gap-4">
+            {SOCIAL_LINKS.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <Icon weight="fill" className="w-5 h-5" />
+                </a>
+              );
+            })}
+          </div>
         </Reveal>
 
       </div>
