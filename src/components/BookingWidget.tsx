@@ -5,13 +5,15 @@ import {
   CaretLeft,
   CaretRight,
   CheckCircle,
+  LockSimple,
   WarningCircle,
   VideoCamera,
 } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
 import { Reveal } from './Reveal';
-import { SERVICE_CATALOG } from '../../shared/services';
+import { getServicesForContext } from '../../shared/services';
 import { trackEvent } from '../lib/analytics';
+import { getContext, notifyParent } from '../lib/embed';
 
 interface Slot {
   start: string;
@@ -66,7 +68,11 @@ function slotDayKey(iso: string): string {
 }
 
 export const BookingWidget: React.FC = () => {
-  const [selectedService, setSelectedService] = useState('');
+  const context = useMemo(() => getContext(), []);
+  const services = useMemo(() => getServicesForContext(context), [context]);
+  const isLocked = services.length === 1;
+
+  const [selectedService, setSelectedService] = useState(() => (services.length === 1 ? services[0].slug : ''));
   const [availability, setAvailability] = useState<AvailabilityResponse | null>(null);
   const [loadingWeek, setLoadingWeek] = useState(false);
   const [weekError, setWeekError] = useState<string | null>(null);
@@ -155,6 +161,7 @@ export const BookingWidget: React.FC = () => {
       }
       setBookingResult({ meetLink: data.meetLink, eventLink: data.eventLink });
       trackEvent('schedule_call', { service: selectedService });
+      notifyParent('booked', { service: selectedService });
     } catch {
       setBookingError('No pudimos crear la reserva. Revisa tu conexión e intenta de nuevo.');
       trackEvent('booking_error', { service: selectedService, reason: 'network_error' });
@@ -174,7 +181,7 @@ export const BookingWidget: React.FC = () => {
     return map;
   }, [availability]);
 
-  const selectedServiceTitle = SERVICE_CATALOG.find((s) => s.slug === selectedService)?.title ?? '';
+  const selectedServiceTitle = services.find((s) => s.slug === selectedService)?.title ?? '';
 
   return (
     <div className="bg-white rounded-3xl border border-line shadow-xl overflow-hidden text-ink">
@@ -184,20 +191,27 @@ export const BookingWidget: React.FC = () => {
           <CalendarCheck weight="bold" className="text-ink/60" />
           <span>¿Cómo te ayudo?</span>
         </label>
-        <div className="relative">
-          <select
-            required
-            value={selectedService}
-            onChange={(e) => handleServiceChange(e.target.value)}
-            className="w-full appearance-none px-4 py-3 pr-10 rounded-xl border border-line bg-mist-subtle focus:bg-white text-sm text-ink focus:outline-none focus:border-ink transition-colors cursor-pointer"
-          >
-            <option value="" disabled>Selecciona un servicio</option>
-            {SERVICE_CATALOG.map((s) => (
-              <option key={s.slug} value={s.slug}>{s.title}</option>
-            ))}
-          </select>
-          <CaretDown weight="bold" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40" />
-        </div>
+        {isLocked ? (
+          <div className="w-full flex items-center gap-2 px-4 py-3 rounded-xl border border-line bg-mist-subtle text-sm text-ink">
+            <LockSimple weight="bold" className="text-ink/40 w-4 h-4 shrink-0" />
+            <span>{services[0].title}</span>
+          </div>
+        ) : (
+          <div className="relative">
+            <select
+              required
+              value={selectedService}
+              onChange={(e) => handleServiceChange(e.target.value)}
+              className="w-full appearance-none px-4 py-3 pr-10 rounded-xl border border-line bg-mist-subtle focus:bg-white text-sm text-ink focus:outline-none focus:border-ink transition-colors cursor-pointer"
+            >
+              <option value="" disabled>Selecciona un servicio</option>
+              {services.map((s) => (
+                <option key={s.slug} value={s.slug}>{s.title}</option>
+              ))}
+            </select>
+            <CaretDown weight="bold" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40" />
+          </div>
+        )}
       </div>
 
       <div className="min-h-[440px]">
